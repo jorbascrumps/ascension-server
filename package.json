@@ -20,6 +20,7 @@
   "dependencies": {
     "async": "^1.4.0",
     "express": "^4.13.1",
-    "express-subdomain": "^1.0.3"
+    "express-subdomain": "^1.0.3",
+    "simple-route-loader": "*"
   }
 }
