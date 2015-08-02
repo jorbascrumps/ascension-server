@@ -23,6 +23,10 @@ function Chat (socket) {
             sender: payload.sender
         });
     });
+
+    this._socket.on('disconnect', function () {
+        Room.leave(this.id);
+    });
 }
 
 module.exports = Chat;

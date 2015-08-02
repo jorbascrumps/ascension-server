@@ -30,3 +30,14 @@ exports.join = function (id, user) {
 
     return id;
 };
+
+exports.leave = function (id) {
+    Object.keys(_rooms).forEach(function (room) {
+        var clients = _rooms[room].clients,
+            client_id = clients.indexOf(id);
+
+        if (client_id >= 0) {
+            clients.splice(client_id, 1);
+        }
+    });
+}
