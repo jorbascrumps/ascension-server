@@ -1,16 +1,20 @@
 'use strict';
 
-var _rooms = {};
+var _rooms = {},
+    _room_template = {
+        id: null,
+        clients: []
+    };
 
 exports.add = function (id) {
-    if (!this.get(id)) {
-        _rooms[id] = {
-            id: id,
-            clients: []
-        };
+    var room = this.get(id);
+
+    if (!room) {
+        room = _rooms[id] = _room_template;
+        room.id = id;
     }
 
-    return this.get(id);
+    return room;
 };
 
 exports.get = function (id) {
