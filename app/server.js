@@ -47,7 +47,7 @@ function launchServer (port, options, secure) {
 
     var io = require('socket.io')(server);
     io.use(require('socketio-wildcard')());
-    io.on('connection', require('./server/index'));
+    io.on('connection', require('./server/'));
 
     return server;
 }
