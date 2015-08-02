@@ -10,7 +10,7 @@ function Chat (socket) {
     this._socket = socket;
 
     this._socket.on('chat.channel.join', function (payload) {
-        var room = Room.join(payload.room, payload.id);
+        var room = Room.join(payload.room, this.id);
         this.join(room);
         this.to(room).emit('chat.message.receive', {
             message: payload.id + ' has joined.'
@@ -22,7 +22,7 @@ function Chat (socket) {
             message: payload.message,
             sender: payload.sender
         });
-    })
+    });
 }
 
 module.exports = Chat;
