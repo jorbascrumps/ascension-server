@@ -1,6 +1,6 @@
 'use strict'
 
-var app = require('./app'),
+var app = require('./api'),
     path = require('path'),
     fs = require('fs'),
     http = require('http'),
@@ -45,31 +45,9 @@ function launchServer (port, options, secure) {
         console.log('App launched @ %s:%s', this.address().address, this.address().port);
     });
 
-var io = require('socket.io')(server);
-io.use(require('socketio-wildcard')());
-io.on('connection', function (socket) {
-    socket.on('disconnect', function () {
-        socket.to('room').emit('chat.message.receive', {
-            message: 'User has left.'
-        });
-    });
-
-    socket.on('*', function (payload) {
-        var event_name = payload.data[0].split('.'),
-            event_data = payload.data[1];
-
-        console.log(event_name, event_data);
-        socket.join('room');
-
-        switch (event_name[0]) {
-            case 'chat':
-                if (!event_data.sender) {
-                    event_data.sender = 'System';
-                }
-                socket.to('room').emit('chat.message.receive', event_data);
-        }
-    });
-});
+    var io = require('socket.io')(server);
+    io.use(require('socketio-wildcard')());
+    io.on('connection', require('./server/'));
 
     return server;
 }
