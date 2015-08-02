@@ -6,7 +6,6 @@ function Delegator (socket) {
     }
 
     this._socket = socket;
-    this._socket.join('room');
 
     require('./chat')(this._socket);
 
