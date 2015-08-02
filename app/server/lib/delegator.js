@@ -6,9 +6,12 @@ function Delegator (socket) {
     }
 
     this._socket = socket;
+    this._socket.join('room');
+
+    require('./chat')(this._socket);
 
     this._socket.on('disconnect', this.disconnectHandler);
-    this._socket.on('*', this.anyHandler);
+    // this._socket.on('*', this.anyHandler);
 }
 
 Delegator.prototype.disconnectHandler = function () {
@@ -21,15 +24,13 @@ Delegator.prototype.anyHandler = function (payload) {
     var event_name = payload.data[0].split('.'),
         event_data = payload.data[1];
 
-    console.log(event_name, event_data);
-    this.join('room');
+    if (!event_data.sender) {
+        event_data.sender = 'System';
+    }
 
     switch (event_name[0]) {
         case 'chat':
-            if (!event_data.sender) {
-                event_data.sender = 'System';
-            }
-            this.to('room').emit('chat.message.receive', event_data);
+            console.log(event_name, event_data);
     }
 };
 
