@@ -8,6 +8,7 @@ function Delegator (socket) {
     this._socket = socket;
 
     require('./chat')(this._socket);
+    require('./player')(this._socket);
 
     this._socket.on('disconnect', this.disconnectHandler);
     // this._socket.on('*', this.anyHandler);
