@@ -25,7 +25,11 @@ function Chat (socket) {
     });
 
     this._socket.on('disconnect', function () {
-        Room.leave(this.id);
+        var room = Room.leave(this.id);
+
+        this.to(room).emit('chat.message.receive', {
+            message: 'User has left.'
+        });
     });
 }
 

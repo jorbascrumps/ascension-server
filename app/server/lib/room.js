@@ -31,13 +31,20 @@ exports.join = function (id, user) {
     return id;
 };
 
-exports.leave = function (id) {
-    Object.keys(_rooms).forEach(function (room) {
-        var clients = _rooms[room].clients,
-            client_id = clients.indexOf(id);
+exports.leave = function (client_id) {
+    var room_id = Object.keys(_rooms).filter(function (room_id) {
+        var room = _rooms[room_id],
+            clients = room.clients,
+            index = clients.indexOf(client_id);
 
-        if (client_id >= 0) {
-            clients.splice(client_id, 1);
+        if (index >= 0) {
+            clients.splice(index, 1);
+
+            return true;
         }
+
+        return false;
     });
+
+    return room_id[0];
 }
