@@ -14,9 +14,6 @@ function Delegator (socket) {
 }
 
 Delegator.prototype.disconnectHandler = function () {
-    this.to('room').emit('chat.message.receive', {
-        message: 'User has left.'
-    });
 };
 
 Delegator.prototype.anyHandler = function (payload) {
