@@ -10,10 +10,12 @@ function Chat (socket) {
     this._socket = socket;
 
     this._socket.on('chat.channel.join', function (payload) {
-        var room = Room.join(payload.room, this.id);
+        var room = Room.join(payload.room, this.id, {
+            name: payload.sender
+        });
         this.join(room);
         this.to(room).emit('chat.message.receive', {
-            message: payload.id + ' has joined.'
+            message: payload.sender + ' has joined.'
         });
     });
 
@@ -27,8 +29,12 @@ function Chat (socket) {
     this._socket.on('disconnect', function () {
         var room = Room.leave(this.id);
 
-        this.to(room).emit('chat.message.receive', {
-            message: 'User has left.'
+        if (!room.id) {
+            return;
+        }
+
+        this.to(room.id).emit('chat.message.receive', {
+            message: room.client.name + ' has left.'
         });
     });
 }
