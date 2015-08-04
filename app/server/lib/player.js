@@ -15,21 +15,33 @@ function Player (socket) {
 
 Player.prototype.playerCreateHandler = function (payload) {
     var room = Room.get(payload.room),
+        clients = room.clients,
         client = room.clients[this.id];
 
-    client.type = payload.type;
-    this.emit('game.player.spawn', {
+    client.pawn = {
         asset: 'nathan',
         transform: {
             position: {
-                x: 150,
-                y: 150
+                x: 100,
+                y: 250
             },
             rotation: 1,
             width: 50,
             height: 50
         }
-    });
+    };
+
+    Object.keys(clients).forEach(function (id, index) {
+        var client = clients[id];
+
+        if (!client.pawn) {
+            return;
+        }
+
+        client.pawn.current = id == this.id;
+        client.pawn.transform.position.y = 150 * (index + 1);
+        this.emit('game.player.spawn', client.pawn);
+    }, this);
 };
 
 Player.prototype.playerSpawnHandler = function () {
