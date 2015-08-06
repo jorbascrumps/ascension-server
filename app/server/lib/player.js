@@ -1,24 +1,33 @@
 'use strict';
 
-var Room = require('./room');
+var Room = require('./room'),
+    io = require('socket.io')();
 
-function Player (socket) {
+function Player (socket, server) {
     if (!(this instanceof Player)) {
-        return new Player(socket);
+        return new Player(socket, server);
     }
 
     this._socket = socket;
+    this._server = server;
 
-    this._socket.on('game.player.create', this.playerCreateHandler);
-    this._socket.on('game.player.spawn', this.playerSpawnHandler);
+    var self = this;
+    this._socket.on('game.player.create', function (payload) {
+        self.playerCreateHandler(payload);
+    });
+
+    this._socket.on('game.pawn.movement', function (position) {
+        this.to(this.rooms[1]).emit('server.pawn.movement', position);
+    })
 }
 
 Player.prototype.playerCreateHandler = function (payload) {
     var room = Room.get(payload.room),
         clients = room.clients,
-        client = room.clients[this.id];
+        client = room.clients[this._socket.id];
 
     client.pawn = {
+        id: this._socket.id,
         asset: 'nathan',
         transform: {
             position: {
@@ -40,12 +49,9 @@ Player.prototype.playerCreateHandler = function (payload) {
 
         client.pawn.current = id == this.id;
         client.pawn.transform.position.y = 150 * (index + 1);
-        this.emit('game.player.spawn', client.pawn);
-    }, this);
-};
 
-Player.prototype.playerSpawnHandler = function () {
-    console.log('spawn');
+        this._server.to(this._socket.rooms[1]).emit('server.pawn.spawn', client.pawn);
+    }, this);
 };
 
 module.exports = Player;
