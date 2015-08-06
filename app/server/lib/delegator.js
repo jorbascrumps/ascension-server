@@ -8,14 +8,22 @@ function Delegator (socket, server) {
     this._socket = socket;
     this._server = server;
 
-    require('./chat')(this._socket);
-    require('./player')(this._socket, this._server);
+    this._components = {
+        chat: require('./chat')(this._socket),
+        pawn: require('./player')(this._socket, this._server)
+    };
 
-    this._socket.on('disconnect', this.disconnectHandler);
+    var self = this;
+    this._socket.on('disconnect', function () {
+        self.disconnectHandler();
+    });
     // this._socket.on('*', this.anyHandler);
 }
 
 Delegator.prototype.disconnectHandler = function () {
+    Object.keys(this._components).forEach(function (component) {
+        this._components[component].disconnectHandler();
+    }, this);
 };
 
 Delegator.prototype.anyHandler = function (payload) {

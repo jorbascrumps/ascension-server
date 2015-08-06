@@ -47,11 +47,15 @@ Player.prototype.playerCreateHandler = function (payload) {
             return;
         }
 
-        client.pawn.current = id == this.id;
+        client.pawn.current = id == this._socket.id;
         client.pawn.transform.position.y = 150 * (index + 1);
 
         this._server.to(this._socket.rooms[1]).emit('server.pawn.spawn', client.pawn);
     }, this);
+};
+
+Player.prototype.disconnectHandler = function () {
+    console.log('disconnect pawn');
 };
 
 module.exports = Player;
