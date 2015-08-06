@@ -11,7 +11,6 @@ function Chat (socket) {
 
     this._socket.on('chat.channel.join', this.channelJoinHandler);
     this._socket.on('chat.message.send', this.sendMessageHandler);
-    this._socket.on('disconnect', this.disconnectHandler);
 }
 
 Chat.prototype.channelJoinHandler = function (payload) {
