@@ -1,14 +1,15 @@
 'use strict';
 
-function Delegator (socket) {
+function Delegator (socket, server) {
     if (!(this instanceof Delegator)) {
-        return new Delegator(socket);
+        return new Delegator(socket, server);
     }
 
     this._socket = socket;
+    this._server = server;
 
     require('./chat')(this._socket);
-    require('./player')(this._socket);
+    require('./player')(this._socket, this._server);
 
     this._socket.on('disconnect', this.disconnectHandler);
     // this._socket.on('*', this.anyHandler);

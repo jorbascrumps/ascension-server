@@ -45,10 +45,6 @@ function launchServer (port, options, secure) {
         console.log('App launched @ %s:%s', this.address().address, this.address().port);
     });
 
-    var io = require('socket.io')(server);
-    io.use(require('socketio-wildcard')());
-    io.on('connection', require('./server/'));
-
     return server;
 }
 
