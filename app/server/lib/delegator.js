@@ -9,8 +9,8 @@ function Delegator (socket, server) {
     this._server = server;
 
     this._components = {
-        chat: require('./chat')(this._socket),
-        pawn: require('./player')(this._socket, this._server)
+        pawn: require('./player')(this._socket, this._server),
+        chat: require('./chat')(this._socket)
     };
 
     var self = this;

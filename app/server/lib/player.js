@@ -10,6 +10,7 @@ function Player (socket, server) {
 
     this._socket = socket;
     this._server = server;
+    this._room = socket.rooms[1];
 
     var self = this;
     this._socket.on('game.player.create', function (payload) {
@@ -31,8 +32,8 @@ Player.prototype.playerCreateHandler = function (payload) {
         asset: 'nathan',
         transform: {
             position: {
-                x: 100,
-                y: 250
+                x: payload.position.x,
+                y: payload.position.y
             },
             rotation: 1,
             width: 50,
@@ -48,14 +49,21 @@ Player.prototype.playerCreateHandler = function (payload) {
         }
 
         client.pawn.current = id == this._socket.id;
-        client.pawn.transform.position.y = 150 * (index + 1);
 
         this._server.to(this._socket.rooms[1]).emit('server.pawn.spawn', client.pawn);
     }, this);
 };
 
 Player.prototype.disconnectHandler = function () {
-    console.log('disconnect pawn');
+    var room = Room.leave(this._socket.id);
+
+    if (!room.id) {
+        return;
+    }
+
+    this._socket.to(room.id).emit('server.pawn.kill', {
+        id: this._socket.id
+    });
 };
 
 module.exports = Player;
