@@ -14,13 +14,26 @@ function Player (socket, server) {
 
     var self = this;
     this._socket.on('game.player.create', function (payload) {
+        self._room = payload.room;
         self.playerCreateHandler(payload);
     });
 
-    this._socket.on('game.pawn.movement', function (position) {
-        this.to(this.rooms[1]).emit('server.pawn.movement', position);
-    })
+    this._socket.on('game.pawn.movement', function (payload) {
+        self.pawnMovementHandler(payload);
+    });
 }
+
+Player.prototype.pawnMovementHandler = function (payload) {
+    var room = Room.get(this._room),
+        clients = room.clients,
+        client = room.clients[this._socket.id];
+
+    client.pawn.transform.position = {
+        x: payload.position.x - (payload.position.x % 50),
+        y: payload.position.y - (payload.position.y % 50)
+    };
+    this._server.to(this._room).emit('server.pawn.movement', payload);
+};
 
 Player.prototype.playerCreateHandler = function (payload) {
     var room = Room.get(payload.room),
@@ -49,7 +62,6 @@ Player.prototype.playerCreateHandler = function (payload) {
         }
 
         client.pawn.current = id == this._socket.id;
-
         this._server.to(this._socket.rooms[1]).emit('server.pawn.spawn', client.pawn);
     }, this);
 };
