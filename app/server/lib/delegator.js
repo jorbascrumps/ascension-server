@@ -17,6 +17,7 @@ function Delegator (socket, server) {
     this._socket.on('disconnect', function () {
         self.disconnectHandler();
     });
+
     // this._socket.on('*', this.anyHandler);
 }
 

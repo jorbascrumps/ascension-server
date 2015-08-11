@@ -32,7 +32,8 @@ Player.prototype.pawnMovementHandler = function (payload) {
         x: payload.position.x - (payload.position.x % 50),
         y: payload.position.y - (payload.position.y % 50)
     };
-    this._server.to(this._room).emit('server.pawn.movement', payload);
+
+    this._socket.to(this._room).emit('server.pawn.movement', payload);
 };
 
 Player.prototype.playerCreateHandler = function (payload) {
