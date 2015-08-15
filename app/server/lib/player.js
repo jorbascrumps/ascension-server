@@ -25,6 +25,10 @@ function Player (socket, server) {
     this._socket.on('game.tagged.enter', function (payload) {
         self.taggedTileEnterHandler(payload);
     });
+
+    this._socket.on('game.tagged.exit', function (payload) {
+        self.taggedTileExitHandler(payload);
+    });
 }
 
 Player.prototype.pawnMovementHandler = function (payload) {
@@ -85,6 +89,10 @@ Player.prototype.disconnectHandler = function () {
 
 Player.prototype.taggedTileEnterHandler = function (payload) {
     this._socket.to(this._room).emit('server.tagged.enter', payload);
+};
+
+Player.prototype.taggedTileExitHandler = function (payload) {
+    this._socket.to(this._room).emit('server.tagged.exit', payload);
 };
 
 module.exports = Player;
