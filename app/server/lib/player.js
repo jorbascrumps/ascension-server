@@ -21,6 +21,10 @@ function Player (socket, server) {
     this._socket.on('game.pawn.movement', function (payload) {
         self.pawnMovementHandler(payload);
     });
+
+    this._socket.on('game.tagged.enter', function (payload) {
+        self.taggedTileEnterHandler(payload);
+    });
 }
 
 Player.prototype.pawnMovementHandler = function (payload) {
@@ -77,6 +81,10 @@ Player.prototype.disconnectHandler = function () {
     this._socket.to(room.id).emit('server.pawn.kill', {
         id: this._socket.id
     });
+};
+
+Player.prototype.taggedTileEnterHandler = function (payload) {
+    this._socket.to(this._room).emit('server.tagged.enter', payload);
 };
 
 module.exports = Player;
