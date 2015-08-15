@@ -22,6 +22,7 @@
     "express": "^4.13.1",
     "express-subdomain": "^1.0.3",
     "simple-route-loader": "*",
+    "simple-secure-server": "*",
     "socket.io": "^1.3.6",
     "socketio-wildcard": "^0.1.1"
   }
