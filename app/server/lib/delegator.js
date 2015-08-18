@@ -13,6 +13,8 @@ function Delegator (socket, server) {
         chat: require('./chat')(this._socket)
     };
 
+    this.connectHandler();
+
     var self = this;
     this._socket.on('disconnect', function () {
         self.disconnectHandler();
@@ -20,6 +22,12 @@ function Delegator (socket, server) {
 
     // this._socket.on('*', this.anyHandler);
 }
+
+Delegator.prototype.connectHandler = function () {
+    Object.keys(this._components).forEach(function (component) {
+        this._components[component].connectHandler();
+    }, this);
+};
 
 Delegator.prototype.disconnectHandler = function () {
     Object.keys(this._components).forEach(function (component) {

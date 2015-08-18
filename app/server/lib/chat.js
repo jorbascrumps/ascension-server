@@ -13,6 +13,8 @@ function Chat (socket) {
     this._socket.on('chat.message.send', this.sendMessageHandler);
 }
 
+Chat.prototype.connectHandler = function () {};
+
 Chat.prototype.channelJoinHandler = function (payload) {
     var room = Room.join(payload.room, this.id, {
         name: payload.sender

@@ -31,6 +31,8 @@ function Player (socket, server) {
     });
 }
 
+Player.prototype.connectHandler = function () {};
+
 Player.prototype.pawnMovementHandler = function (payload) {
     var room = Room.get(this._room),
         clients = room.clients,
@@ -51,7 +53,7 @@ Player.prototype.playerCreateHandler = function (payload) {
 
     client.pawn = {
         id: this._socket.id,
-        asset: 'nathan',
+        asset: payload.asset,
         transform: {
             position: {
                 x: payload.position.x,
