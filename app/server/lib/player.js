@@ -10,12 +10,16 @@ function Player (socket, server) {
 
     this._socket = socket;
     this._server = server;
-    this._room = socket.rooms[1];
+    this._room = null;
 
     var self = this;
     this._socket.on('game.player.create', function (payload) {
         self._room = payload.room;
         self.playerCreateHandler(payload);
+    });
+
+    this._socket.on('game.pawn.spawn', function (payload) {
+        self.spawnHandler(payload);
     });
 
     this._socket.on('game.pawn.movement', function (payload) {
@@ -47,7 +51,11 @@ Player.prototype.pawnMovementHandler = function (payload) {
 };
 
 Player.prototype.playerCreateHandler = function (payload) {
-    var room = Room.get(payload.room),
+    this.syncPlayers();
+};
+
+Player.prototype.spawnHandler = function (payload) {
+    var room = Room.get(this._room),
         clients = room.clients,
         client = room.clients[this._socket.id];
 
@@ -64,6 +72,13 @@ Player.prototype.playerCreateHandler = function (payload) {
             height: 50
         }
     };
+
+    this.syncPlayers();
+};
+
+Player.prototype.syncPlayers = function () {
+    var room = Room.get(this._room)
+      , clients = room.clients;
 
     Object.keys(clients).forEach(function (id, index) {
         var client = clients[id];
