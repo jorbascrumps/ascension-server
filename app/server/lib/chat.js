@@ -26,7 +26,7 @@ Chat.prototype.channelJoinHandler = function (payload) {
     });
 };
 
-Chat.prototype.sendMessageHandler =function (payload) {
+Chat.prototype.sendMessageHandler = function (payload) {
     this.to(payload.room).emit('chat.message.receive', {
         message: payload.message,
         sender: payload.sender
