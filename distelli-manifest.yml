@@ -4,6 +4,12 @@ iamchristopher/AscensionServer:
   PkgInclude:
     - '*'
 
+  PkgExclude:
+    - node_modules/
+
+  PreRelease:
+    - npm install
+
   Build:
     - echo "Begin Build"
     #- npm install
@@ -11,12 +17,13 @@ iamchristopher/AscensionServer:
 
   PreInstall:
     - echo "Begin PreInstall"
-    #- sudo apt-get -y update
-    #- sudo apt-get -y install nodejs
-    #- sudo apt-get -y install npm
+    - sudo apt-get -y update
+    - sudo apt-get -y install nodejs
+    - sudo apt-get -y install npm
 
   PostInstall:
     - echo "Begin PostInstall"
+    - npm install
 
   Exec:
-    #- /usr/bin/nodejs app.js
+    - /usr/bin/nodejs app/server.js

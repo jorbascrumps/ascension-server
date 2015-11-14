@@ -3,8 +3,11 @@
 var app    = require('./api')
   , config = require('./config');
 
-require('simple-secure-server')(app, {
+var options = {
     ports: {
         default: config.express.port
     }
+};
+require('simple-secure-server')(app, options, function (err, normal, secure) {
+    console.log('App launched');
 });
