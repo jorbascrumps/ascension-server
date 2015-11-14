@@ -27,4 +27,4 @@ iamchristopher/AscensionServer:
 
   Exec:
     - echo "Starting application"
-    - /usr/bin/nodejs app/server.js
+    - sudo /usr/bin/nodejs app/server.js
