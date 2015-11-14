@@ -26,4 +26,4 @@ iamchristopher/AscensionServer:
     - npm install
 
   Exec:
-    - /usr/bin/nodejs app/server.js
+    - node app/server.js
