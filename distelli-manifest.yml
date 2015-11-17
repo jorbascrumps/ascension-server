@@ -22,6 +22,7 @@ iamchristopher/AscensionServer:
     - sudo apt-get -y install npm
     - echo "Installing PM2"
     - sudo npm i pm2 -g
+    - echo "Done Installing PM2"
 
   PostInstall:
     - echo "Begin PostInstall"
