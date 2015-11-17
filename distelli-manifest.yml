@@ -27,11 +27,12 @@ iamchristopher/AscensionServer:
     - echo "Installing PM2"
     - sudo npm i pm2 -g
     - echo "Done Installing PM2"
-    - echo "Begin PostInstall"
-    - npm install
-    - echo "Done NPM install"
 
   PostInstall:
+    - echo "Begin PostInstall"
+    - set +e; source ~/.nvm/nvm.sh; set -e
+    - npm install
+    - echo "Done NPM install"
 
   Exec:
     - echo "Starting application"
