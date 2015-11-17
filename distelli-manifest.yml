@@ -16,23 +16,23 @@ iamchristopher/AscensionServer:
     #- npm test
 
   PreInstall:
-    - echo "Begin PreInstall"
-    - sudo apt-get -y update
-    - echo "Installing NVM"
-    - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
-    - set +e; source ~/.nvm/nvm.sh; set -e
-    - echo "Installing NVM version"
-    - nvm install v4.2.1
-    - nvm use v4.2.1
-    - echo "Installing PM2"
-    - sudo npm i pm2 -g
-    - echo "Done Installing PM2"
+    # - echo "Begin PreInstall"
+    # - sudo apt-get -y update
+    # - echo "Installing NVM"
+    # - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
+    # - set +e; source ~/.nvm/nvm.sh; set -e
+    # - echo "Installing NVM version"
+    # - nvm install v4.2.1
+    # - nvm use v4.2.1
+    # - echo "Installing PM2"
+    # - sudo npm i pm2 -g
+    # - echo "Done Installing PM2"
 
   Install:
-    - echo "Begin PostInstall"
-    - set +e; source ~/.nvm/nvm.sh; set -e
-    - npm install
-    - echo "Done NPM install"
+    # - echo "Begin PostInstall"
+    # - set +e; source ~/.nvm/nvm.sh; set -e
+    # - npm install
+    # - echo "Done NPM install"
 
   Exec:
     - echo "Starting application"
