@@ -18,8 +18,6 @@ iamchristopher/AscensionServer:
   PreInstall:
     - echo "Begin PreInstall"
     - sudo apt-get -y update
-    - sudo apt-get -y install nodejs
-    - sudo apt-get -y install npm
     - echo "Installing NVM"
     - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 
