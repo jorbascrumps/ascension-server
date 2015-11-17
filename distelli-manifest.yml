@@ -20,6 +20,7 @@ iamchristopher/AscensionServer:
     - sudo apt-get -y update
     - sudo apt-get -y install nodejs
     - sudo apt-get -y install npm
+    - echo "Installing PM2"
     - sudo npm i pm2 -g
 
   PostInstall:
