@@ -20,6 +20,8 @@ iamchristopher/AscensionServer:
     - sudo apt-get -y update
     - sudo apt-get -y install nodejs
     - sudo apt-get -y install npm
+
+  PostInstall:
     - "Installing NVM"
     - sudo npm i -g nvm
     - nvm install 4.2.1
@@ -27,8 +29,6 @@ iamchristopher/AscensionServer:
     - echo "Installing PM2"
     - sudo npm i pm2 -g
     - echo "Done Installing PM2"
-
-  PostInstall:
     - echo "Begin PostInstall"
     - npm install
 
