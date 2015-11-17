@@ -23,7 +23,7 @@ iamchristopher/AscensionServer:
 
   PostInstall:
     - echo "Installing NVM"
-    - sudo npm i -g nvm
+    - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
     - echo "Installing NVM version"
     - nvm install 4.2.1
     - echo "Switching NVM version"
