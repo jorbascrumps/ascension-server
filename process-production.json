@@ -1,0 +1,16 @@
+// PM2 - Production Process
+{
+    "apps": [
+        {
+            "name": "main",
+            "script": "app/server.js",
+            "args": "",
+            "instances": 4,
+            "max_memory_restart": "256M",
+            "exec_mode": "cluster",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}

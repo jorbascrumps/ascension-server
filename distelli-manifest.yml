@@ -20,6 +20,7 @@ iamchristopher/AscensionServer:
     - sudo apt-get -y update
     - sudo apt-get -y install nodejs
     - sudo apt-get -y install npm
+    - sudo npm i pm2 -g
 
   PostInstall:
     - echo "Begin PostInstall"
@@ -27,4 +28,4 @@ iamchristopher/AscensionServer:
 
   Exec:
     - echo "Starting application"
-    - sudo /usr/bin/nodejs app/server.js
+    - pm2 gracefulReload process-production.json
