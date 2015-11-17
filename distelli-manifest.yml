@@ -20,10 +20,10 @@ iamchristopher/AscensionServer:
     - sudo apt-get -y update
     - sudo apt-get -y install nodejs
     - sudo apt-get -y install npm
-
-  PostInstall:
     - echo "Installing NVM"
     - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
+
+  PostInstall:
     - echo "Installing NVM version"
     - nvm install 4.2.1
     - echo "Switching NVM version"
