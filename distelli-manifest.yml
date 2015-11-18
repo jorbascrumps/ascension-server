@@ -31,6 +31,7 @@ iamchristopher/AscensionServer:
   Install:
     - echo "Begin PostInstall"
     - set +e; source ~/.nvm/nvm.sh; set -e
+    - nvm use v4.2.1
     - npm install
     - echo "Done NPM install"
 
