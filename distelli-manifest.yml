@@ -34,7 +34,3 @@ iamchristopher/AscensionServer:
   Terminate:
     - echo "Terminating application"
     - pm2 stop process-production.json
-
-  Restart:
-    - echo "Restarting application"
-    - pm2 gracefulReload process-production.json
