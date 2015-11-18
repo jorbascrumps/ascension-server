@@ -1,19 +1,11 @@
 iamchristopher/AscensionServer:
 
-  #Learn about the distelli-manifest.yml at https://www.distelli.com/docs/reference/distelli-manifest
+  Build:
+    - npm install
+    - npm test
+
   PkgInclude:
     - '*'
-
-  PkgExclude:
-    - node_modules/
-
-  PreRelease:
-    - npm install
-
-  Build:
-    - echo "Begin Build"
-    #- npm install
-    #- npm test
 
   PreInstall:
     - echo "Begin PreInstall"
@@ -28,14 +20,21 @@ iamchristopher/AscensionServer:
     - sudo npm i pm2 -g
     - echo "Done Installing PM2"
 
-  Install:
+  PostInstall:
     - echo "Begin PostInstall"
     - set +e; source ~/.nvm/nvm.sh; set -e
-    - nvm use v4.2.1
-    - npm install
-    - echo "Done NPM install"
 
-  Exec:
-    - mv * ../../../root/
+  Start:
     - echo "Starting application"
-    # - pm2 gracefulReload process-production.json
+    - pm2 gracefulReload process-production.json
+
+  PostStart:
+    - pm2 list
+
+  Terminate:
+    - echo "Terminating application"
+    - pm2 stop process-production.json
+
+  Restart:
+    - echo "Restarting application"
+    - pm2 gracefulReload process-production.json
