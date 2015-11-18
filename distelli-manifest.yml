@@ -22,10 +22,11 @@ iamchristopher/AscensionServer:
 
   PostInstall:
     - echo "Begin PostInstall"
-    - set +e; source ~/.nvm/nvm.sh; set -e
 
   Start:
     - echo "Starting application"
+    - set +e; source ~/.nvm/nvm.sh; set -e
+    - nvm use v4.2.1
     - pm2 gracefulReload process-production.json
 
   PostStart:
