@@ -9,6 +9,8 @@ iamchristopher/AscensionServer:
 
   PreInstall:
     - echo "Begin PreInstall"
+    - echo "Creating symlink for Node"
+    - ln -s /usr/bin/nodejs /usr/bin/node
     - sudo apt-get -y update
     - echo "Installing NVM"
     - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
@@ -28,7 +30,7 @@ iamchristopher/AscensionServer:
     - echo "Starting application"
     - set +e; source ~/.nvm/nvm.sh; set -e
     - nvm use v4.2.1
-    - /usr/local/bin/pm2 gracefulReload process-production.json
+    - /usr/local/bin/pm2 startOrGracefulReload process-production.json
 
   PostStart:
     # - /usr/local/bin/pm2 list
