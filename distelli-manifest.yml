@@ -31,7 +31,7 @@ iamchristopher/AscensionServer:
     - /usr/local/bin/pm2 gracefulReload process-production.json
 
   PostStart:
-    - /usr/local/bin/pm2 list
+    # - /usr/local/bin/pm2 list
 
   Terminate:
     - echo "Terminating application"
