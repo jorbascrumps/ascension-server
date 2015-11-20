@@ -35,6 +35,7 @@ iamchristopher/AscensionServer:
     - echo "Starting application"
     - set +e; source ~/.nvm/nvm.sh; set -e
     - nvm use v4.2.1
+    - /usr/local/bin/pm2 kill
     - /usr/local/bin/pm2 startOrGracefulReload process-production.json
 
   PostStart:
