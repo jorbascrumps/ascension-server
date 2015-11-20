@@ -27,14 +27,13 @@ iamchristopher/AscensionServer:
     - echo "Begin PostInstall"
     - set +e; source ~/.nvm/nvm.sh; set -e
     - nvm use v4.2.1
+    - nvm alias default v4.2.1
     - echo "Installing PM2"
     - sudo npm i pm2 -g
     - echo "Done Installing PM2"
 
   Start:
     - echo "Starting application"
-    - set +e; source ~/.nvm/nvm.sh; set -e
-    - nvm use v4.2.1
     - /usr/local/bin/pm2 kill
     - /usr/local/bin/pm2 startOrGracefulReload process-production.json
 
