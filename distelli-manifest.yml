@@ -9,14 +9,19 @@ iamchristopher/AscensionServer:
 
   PreInstall:
     - echo "Begin PreInstall"
-    - echo "Creating symlink for Node"
-    - ln -s /usr/bin/nodejs /usr/bin/node
     - sudo apt-get -y update
     - echo "Installing NVM"
     - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
     - set +e; source ~/.nvm/nvm.sh; set -e
     - echo "Installing NVM version"
     - nvm install v4.2.1
+    - echo "Creating symlink for Node"
+    - 'if [ -a /usr/bin/node ]; then'
+    -     echo "Symbolic link already exists"
+    - else
+    -     echo "Symbolic link created"
+    -     sudo ln -s /usr/bin/nodejs /usr/bin/node
+    - fi
 
   PostInstall:
     - echo "Begin PostInstall"
