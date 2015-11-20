@@ -34,12 +34,12 @@ iamchristopher/AscensionServer:
 
   Start:
     - echo "Starting application"
-    - /usr/local/bin/pm2 kill
-    - /usr/local/bin/pm2 startOrGracefulReload process-production.json
+    - pm2 kill
+    - pm2 startOrGracefulReload process-production.json
 
   PostStart:
-    - /usr/local/bin/pm2 list
+    - pm2 list
 
   Terminate:
     - echo "Terminating application"
-    - /usr/local/bin/pm2 stop process-production.json
+    - pm2 stop process-production.json
