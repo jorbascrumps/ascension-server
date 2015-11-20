@@ -12,11 +12,6 @@ iamchristopher/AscensionServer:
     - sudo apt-get -y update
     - echo "Installing NVM"
     - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
-    - set +e; source ~/.nvm/nvm.sh; set -e
-    - echo "Installing NVM version"
-    - nvm install v4.2.1
-    - nvm use v4.2.1
-    - nvm alias default v4.2.1
     - echo "Creating symlink for Node"
     - 'if [ -h /usr/bin/node ]; then'
     -     echo "Symbolic link already exists"
@@ -24,6 +19,11 @@ iamchristopher/AscensionServer:
     -     echo "Symbolic link created"
     -     sudo ln -s /usr/bin/nodejs /usr/bin/node
     - fi
+    - set +e; source ~/.nvm/nvm.sh; set -e
+    - echo "Installing NVM version"
+    - nvm install v4.2.1
+    - nvm use v4.2.1
+    - nvm alias default v4.2.1
 
   PostInstall:
     - echo "Begin PostInstall"
@@ -34,12 +34,12 @@ iamchristopher/AscensionServer:
 
   Start:
     - echo "Starting application"
-    - pm2 kill
-    - pm2 startOrGracefulReload process-production.json
+    - /usr/local/bin/pm2 kill
+    - /usr/local/bin/pm2 startOrGracefulReload process-production.json
 
   PostStart:
-    - pm2 list
+    - /usr/local/bin/pm2 list
 
   Terminate:
     - echo "Terminating application"
-    - pm2 stop process-production.json
+    - /usr/local/bin/pm2 stop process-production.json
