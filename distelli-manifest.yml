@@ -6,17 +6,10 @@ iamchristopher/AscensionServer:
   PreRelease:
     - npm install
 
-  PreInstall:
-    - sudo apt-get update
-    - sudo apt-get install nodejs-legacy -y
-    - echo "Installing PM2"
-    - sudo npm install -g pm2
-    - echo "Done Installing PM2"
-
   Start:
     - echo "Starting application"
-    - /usr/bin/pm2 startOrGracefulReload process-production.json
+    - pm2 startOrGracefulReload process-production.json
 
   Terminate:
     - echo "Terminating application"
-    - /usr/bin/pm2 stop process-production.json
+    - pm2 stop process-production.json
