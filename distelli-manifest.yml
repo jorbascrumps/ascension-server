@@ -3,9 +3,6 @@ iamchristopher/AscensionServer:
   PkgInclude:
     - '*'
 
-  PkgExclude:
-    - node_modules/
-
   PreRelease:
     - npm install
 
@@ -15,9 +12,6 @@ iamchristopher/AscensionServer:
     - echo "Installing PM2"
     - sudo npm install -g pm2
     - echo "Done Installing PM2"
-
-  PostInstall:
-    - npm install
 
   Start:
     - echo "Starting application"
