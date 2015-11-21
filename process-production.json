@@ -4,12 +4,13 @@
         {
             "name": "main",
             "script": "app/server.js",
-            "args": "",
+            "args": [],
             "instances": 4,
             "max_memory_restart": "256M",
             "exec_mode": "cluster",
             "env": {
-                "NODE_ENV": "production"
+                "NODE_ENV": "production",
+                "PORT": 8080
             }
         }
     ]
