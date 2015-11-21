@@ -9,6 +9,7 @@ iamchristopher/AscensionServer:
   Start:
     - echo "Starting application"
     - /usr/local/bin/pm2 startOrGracefulReload process-production.json
+    - node -v
 
   Terminate:
     - echo "Terminating application"
