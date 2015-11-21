@@ -8,8 +8,8 @@ iamchristopher/AscensionServer:
 
   Start:
     - echo "Starting application"
-    - /usr/bin/pm2 startOrGracefulReload process-production.json
+    - /usr/local/bin/pm2 startOrGracefulReload process-production.json
 
   Terminate:
     - echo "Terminating application"
-    - /usr/bin/pm2 stop process-production.json
+    - /usr/local/bin/pm2 stop process-production.json
