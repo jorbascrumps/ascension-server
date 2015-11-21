@@ -1,45 +1,28 @@
 iamchristopher/AscensionServer:
 
-  Build:
-    - npm install
-    - npm test
-
   PkgInclude:
     - '*'
 
+  PkgExclude:
+    - node_modules/
+
+  PreRelease:
+    - npm install
+
   PreInstall:
-    - echo "Begin PreInstall"
-    - sudo apt-get -y update
-    - echo "Installing NVM"
-    - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
-    - echo "Creating symlink for Node"
-    - 'if [ -h /usr/bin/node ]; then'
-    -     echo "Symbolic link already exists"
-    - else
-    -     echo "Symbolic link created"
-    -     sudo ln -s /usr/bin/nodejs /usr/bin/node
-    - fi
-    - set +e; source ~/.nvm/nvm.sh; set -e
-    - echo "Installing NVM version"
-    - nvm install v4.2.1
-    - nvm use v4.2.1
-    - nvm alias default v4.2.1
+    - sudo apt-get update
+    - sudo apt-get install nodejs-legacy -y
+    - echo "Installing PM2"
+    - sudo npm install -g pm2
+    - echo "Done Installing PM2"
 
   PostInstall:
-    - echo "Begin PostInstall"
-    - set +e; source ~/.nvm/nvm.sh; set -e
-    - echo "Installing PM2"
-    - sudo npm i pm2 -g
-    - echo "Done Installing PM2"
+    - npm install
 
   Start:
     - echo "Starting application"
-    - /usr/local/bin/pm2 kill
-    - /usr/local/bin/pm2 startOrGracefulReload process-production.json
-
-  PostStart:
-    - /usr/local/bin/pm2 list
+    - /usr/bin/pm2 startOrGracefulReload process-production.json
 
   Terminate:
     - echo "Terminating application"
-    - /usr/local/bin/pm2 stop process-production.json
+    - /usr/bin/pm2 stop process-production.json
