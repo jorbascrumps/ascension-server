@@ -1,1 +1,1 @@
-# ascension-server
+# Ascension Server

@@ -1,11 +1,10 @@
 {
   "name": "ascension-server",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "",
-  "main": "app/server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "PORT=4000 nodemon app/server.js",
-    "test": "echo \"Error: no test specified\""
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -18,14 +17,18 @@
   },
   "homepage": "https://github.com/iamchristopher/ascension-server",
   "dependencies": {
-    "async": "^1.4.0",
-    "express": "^4.13.1",
-    "express-subdomain": "^1.0.3",
-    "extend": "^3.0.0",
-    "simple-route-loader": "*",
-    "simple-secure-server": "*",
-    "socket.io": "^1.3.6",
-    "socketio-wildcard": "^0.1.1"
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-1": "^6.22.0",
+    "babel-register": "^6.23.0",
+    "socket.io": "^1.7.3",
+    "socketio-wildcard": "^0.3.0"
+  },
+  "babel": {
+      "presets": [
+          "es2015",
+          "stage-1"
+      ]
   },
   "jsHint": {
     "node": true
