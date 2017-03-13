@@ -25,10 +25,10 @@
     "socketio-wildcard": "^0.3.0"
   },
   "babel": {
-      "presets": [
-          "es2015",
-          "stage-1"
-      ]
+    "presets": [
+      "es2015",
+      "stage-1"
+    ]
   },
   "jsHint": {
     "node": true
