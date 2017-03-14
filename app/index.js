@@ -60,6 +60,7 @@ io.on('connection', socket => {
             payload
         ]
     } = {}) => delegator({
+        socket,
         type,
         payload
     }));

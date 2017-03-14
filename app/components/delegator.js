@@ -1,11 +1,14 @@
+import chat from './chat';
+
 export default function ({
+    socket,
     type,
     payload
 } = {}) {
     switch (0) {
         case type.indexOf('CHAT'):
-            return console.log(type, payload);
+            return chat({ socket, type, payload });
         default:
-            // Default event
+            return console.log(type, payload);
     }
 }
