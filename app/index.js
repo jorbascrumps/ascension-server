@@ -11,11 +11,6 @@ const server = http.Server(app);
 const io = socketio(server);
 io.use(wildcard());
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
-
 io.on('connection', socket => {
     let _room = null;
 
