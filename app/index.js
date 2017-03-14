@@ -1,12 +1,15 @@
 import socketio from 'socket.io';
+import wildcard from 'socketio-wildcard';
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
 import * as roomManager from './components/room';
+import delegator from './components/delegator';
 
 const app = express();
 const server = http.Server(app);
 const io = socketio(server);
+io.use(wildcard());
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -50,6 +53,16 @@ io.on('connection', socket => {
             text: `${user.name} has abandoned the fight!`
         });
     });
+
+    socket.on('*', ({
+        data: [
+            type,
+            payload
+        ]
+    } = {}) => delegator({
+        type,
+        payload
+    }));
 });
 
 server.listen(8080, () => {
