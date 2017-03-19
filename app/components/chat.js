@@ -5,6 +5,6 @@ export default function ({
 } = {}) {
     switch (type) {
         case 'CHAT_MESSAGE_SEND':
-            return socket.broadcast.emit('MESSAGE', payload);
+            return socket.broadcast.emit('CHAT_MESSAGE_RECEIVE', payload);
     }
 };

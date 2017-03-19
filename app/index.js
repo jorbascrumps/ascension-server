@@ -26,7 +26,7 @@ io.on('connection', socket => {
                 }
             });
 
-        socket.broadcast.emit('MESSAGE', {
+        socket.broadcast.emit('CHAT_MESSAGE_RECEIVE', {
             sender: 'System',
             text: `${user} has joined the fight!`
         });
@@ -47,7 +47,7 @@ io.on('connection', socket => {
             user: socket.id
         });
 
-        socket.broadcast.emit('MESSAGE', {
+        socket.broadcast.emit('CHAT_MESSAGE_RECEIVE', {
             sender: 'System',
             text: `${user.name} has abandoned the fight!`
         });
