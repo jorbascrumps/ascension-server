@@ -12,7 +12,7 @@ const io = socketio(server);
 io.use(wildcard());
 
 io.on('connection', socket => {
-    let _room = null;
+    let _room;
 
     socket.on('CHAT_JOIN_ROOM', ({ user, room }) => {
         _room = roomManager
@@ -33,10 +33,14 @@ io.on('connection', socket => {
     });
 
     socket.on('disconnect', () => {
+        if (!_room) {
+            return;
+        }
+
         const {
             clients: {
                 [socket.id]: user
-            }
+            } = {}
         } = _room;
 
         _room.leave({
