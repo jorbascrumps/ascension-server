@@ -24,8 +24,12 @@ export function add ({
 }
 
 export function get ({
-    id
+    id = null
 } = {}) {
+    if (!id) {
+        return rooms;
+    }
+
     return rooms[id];
 }
 
