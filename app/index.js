@@ -4,7 +4,7 @@ import express from 'express';
 import http from 'http';
 import cors from 'cors';
 import * as roomManager from './components/room';
-import delegator from './components/delegator';
+import createDelegator from './components/delegator';
 
 const app = express();
 const server = http.Server(app);
@@ -13,6 +13,11 @@ io.use(wildcard());
 
 io.on('connection', socket => {
     let _room;
+    const delegator = createDelegator(socket);
+
+    delegator({
+        type: 'CONNECT'
+    });
 
     socket.on('CHAT_JOIN_ROOM', ({ user, room }) => {
         _room = roomManager
@@ -25,11 +30,6 @@ io.on('connection', socket => {
                     name: user
                 }
             });
-
-        socket.broadcast.emit('CHAT_MESSAGE_RECEIVE', {
-            sender: 'System',
-            text: `${user} has joined the fight!`
-        });
     });
 
     socket.on('disconnect', () => {
@@ -47,9 +47,8 @@ io.on('connection', socket => {
             user: socket.id
         });
 
-        socket.broadcast.emit('CHAT_MESSAGE_RECEIVE', {
-            sender: 'System',
-            text: `${user.name} has abandoned the fight!`
+        return delegator({
+            type: 'DISCONNECT'
         });
     });
 
@@ -59,7 +58,6 @@ io.on('connection', socket => {
             payload
         ]
     } = {}) => delegator({
-        socket,
         type,
         payload
     }));
