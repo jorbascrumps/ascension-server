@@ -13,5 +13,7 @@ export default function ({
             return socket.broadcast.emit(type, payload);
         case 'REGISTER':
             return socket.broadcast.emit(type, payload);
+        default:
+            console.log(type, payload);
     }
 };

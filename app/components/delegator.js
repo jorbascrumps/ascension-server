@@ -17,6 +17,10 @@ export default function (socket) {
                 return pawn({ socket, type, payload });
             case 'CONNECT':
             case 'DISCONNECT':
+                pawn({ type, socket });
+                chat({ type, socket });
+
+                return;
             default:
                 return console.log(type, payload);
         }
