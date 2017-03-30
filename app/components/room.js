@@ -12,9 +12,10 @@ export function add ({
     return rooms[id] = {
         id,
         clients: {},
-        join: ({ user }) => join({
+        join: ({ user, ...data }) => join({
             id,
-            user
+            user,
+            ...data
         }),
         leave: ({ user }) => leave({
             id,
