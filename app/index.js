@@ -13,8 +13,17 @@ io.use(wildcard());
 
 io.on('connection', socket => {
     let _room;
-    const delegator = createDelegator(socket);
+    const {
+        handshake: {
+            query: {
+                room
+            }
+        }
+    } = socket;
 
+    socket.join(room);
+
+    const delegator = createDelegator(socket);
     delegator({
         type: 'CONNECT'
     });
