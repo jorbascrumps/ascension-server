@@ -28,38 +28,9 @@ io.on('connection', socket => {
         type: 'CONNECT'
     });
 
-    socket.on('CHAT_JOIN_ROOM', ({ user, room }) => {
-        _room = roomManager
-            .add({
-                id: room
-            })
-            .join({
-                user: {
-                    id: socket.id,
-                    name: user
-                }
-            });
-    });
-
-    socket.on('disconnect', () => {
-        if (!_room) {
-            return;
-        }
-
-        const {
-            clients: {
-                [socket.id]: user
-            } = {}
-        } = _room;
-
-        _room.leave({
-            user: socket.id
-        });
-
-        return delegator({
-            type: 'DISCONNECT'
-        });
-    });
+    socket.on('disconnect', () => delegator({
+        type: 'DISCONNECT'
+    }));
 
     socket.on('*', ({
         data: [
