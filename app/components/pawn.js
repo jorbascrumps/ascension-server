@@ -36,7 +36,6 @@ export default function ({
 
             return socket.broadcast.to(room).emit(type, {
                 ...payload,
-                id,
                 owner: socket.id
             });
         case 'CONNECT':
@@ -49,7 +48,6 @@ export default function ({
                     .map(id => pawns[id])
                     .forEach(pawn => socket.emit('PAWN_REGISTER', {
                         ...pawn,
-                        id,
                         owner: id
                     }))
                 );
