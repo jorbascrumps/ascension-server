@@ -36,7 +36,6 @@ export default function ({
 
             return socket.broadcast.to(room).emit(type, {
                 ...payload,
-                id,
                 owner: socket.id
             });
         case 'CONNECT':
@@ -45,13 +44,13 @@ export default function ({
                     ...clients[id],
                     id
                 }))
-                .forEach(({ id, pawns }) => Object.keys(pawns)
-                    .map(id => pawns[id])
-                    .forEach(pawn => socket.emit('PAWN_REGISTER', {
-                        ...pawn,
+                .forEach(({ id: owner, pawns }) => Object.keys(pawns)
+                    .map(id => ({
+                        ...pawns[id],
                         id,
-                        owner: id
+                        owner
                     }))
+                    .forEach(pawn => socket.emit('PAWN_REGISTER', pawn))
                 );
         case 'DISCONNECT':
             roomData.leave({
