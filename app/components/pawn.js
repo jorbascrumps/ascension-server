@@ -44,12 +44,13 @@ export default function ({
                     ...clients[id],
                     id
                 }))
-                .forEach(({ id, pawns }) => Object.keys(pawns)
-                    .map(id => pawns[id])
-                    .forEach(pawn => socket.emit('PAWN_REGISTER', {
-                        ...pawn,
-                        owner: id
+                .forEach(({ id: owner, pawns }) => Object.keys(pawns)
+                    .map(id => ({
+                        ...pawns[id],
+                        id,
+                        owner
                     }))
+                    .forEach(pawn => socket.emit('PAWN_REGISTER', pawn))
                 );
         case 'DISCONNECT':
             roomData.leave({
