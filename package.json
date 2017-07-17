@@ -16,15 +16,6 @@
     "url": "https://github.com/iamchristopher/ascension-server/issues"
   },
   "homepage": "https://github.com/iamchristopher/ascension-server",
-  "dependencies": {
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-stage-1": "^6.22.0",
-    "babel-register": "^6.23.0",
-    "express": "^4.15.2",
-    "socket.io": "^1.7.3",
-    "socketio-wildcard": "^0.3.0"
-  },
   "babel": {
     "presets": [
       "es2015",
@@ -33,5 +24,15 @@
   },
   "jsHint": {
     "node": true
+  },
+  "devDependencies": {
+    "babel-polyfill": "6.23.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-1": "6.24.0",
+    "babel-register": "6.24.1",
+    "cors": "2.8.4",
+    "express": "4.15.3",
+    "socket.io": "2.0.3",
+    "socketio-wildcard": "2.0.0"
   }
 }
