@@ -2,8 +2,6 @@ import socketio from 'socket.io';
 import wildcard from 'socketio-wildcard';
 import express from 'express';
 import http from 'http';
-import cors from 'cors';
-import * as roomManager from './components/room';
 import createDelegator from './components/delegator';
 
 const app = express();
@@ -12,7 +10,6 @@ const io = socketio(server);
 io.use(wildcard());
 
 io.on('connection', socket => {
-    let _room;
     const {
         handshake: {
             query: {
@@ -43,6 +40,4 @@ io.on('connection', socket => {
     }));
 });
 
-server.listen(8080, () => {
-    console.log('listening on *:8080');
-});
+server.listen(8080, () => console.log('listening on *:8080'));
