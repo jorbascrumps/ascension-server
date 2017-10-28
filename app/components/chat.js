@@ -1,7 +1,12 @@
+import users from './user';
+
 export default function ({
     socket,
     type,
-    payload
+    payload: {
+        user: userId,
+        ...payload
+    } = {}
 } = {}) {
     const {
         handshake: {
@@ -10,21 +15,22 @@ export default function ({
             }
         }
     } = socket;
+    const {
+        [userId]: user = {}
+    } = users;
 
     switch (type) {
         case 'CHAT_MESSAGE_SEND':
             return socket.broadcast.to(room).emit('CHAT_MESSAGE_RECEIVE', payload);
-        case 'CONNECT':
+        case 'CHAT_JOIN_ROOM':
             return socket.broadcast.to(room).emit('CHAT_MESSAGE_RECEIVE', {
                 sender: 'System',
-                text: `[Name] has joined the fight!`
-                // text: `${user.name} has abandoned the fight!`
+                text: `[${user.name}] has joined the fight!`
             });
         case 'DISCONNECT':
             return socket.broadcast.to(room).emit('CHAT_MESSAGE_RECEIVE', {
                 sender: 'System',
-                text: `[Name] has abandoned the fight!`
-                // text: `${user.name} has abandoned the fight!`
+                text: `[${user.name}] has abandoned the fight!`
             });
     }
 };
