@@ -1,7 +1,12 @@
+import {
+    JSDOM
+} from 'jsdom';
+
 let rooms = {};
 
-export function add ({
-    id
+export async function add ({
+    id,
+    socket
 } = {}) {
     const room = get({ id });
 
@@ -9,8 +14,19 @@ export function add ({
         return room;
     }
 
+    let env = await JSDOM.fromFile('index.html', {
+        url: 'http://localhost:8080',
+        runScripts: 'dangerously',
+        resources: 'usable',
+        pretendToBeVisual: true
+    });
+
+    env.window.room = id;
+    env.window.io = socket;
+
     return rooms[id] = {
         id,
+        env,
         clients: {},
         join: ({ user, ...data }) => join({
             id,

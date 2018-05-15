@@ -2,18 +2,22 @@ import socketio from 'socket.io';
 import wildcard from 'socketio-wildcard';
 import express from 'express';
 import http from 'http';
+import path from 'path';
+
 import createDelegator from './components/delegator';
 
 const app = express();
+app.use('/build', express.static(path.resolve(__dirname, '../build')));
+
 const server = http.Server(app);
 const io = socketio(server);
 io.use(wildcard());
 
-io.on('connection', socket => {
+io.on('connection', async socket => {
     const {
         handshake: {
             query: {
-                room
+                room = DEFAULT_ROOM
             }
         }
     } = socket;
@@ -21,7 +25,7 @@ io.on('connection', socket => {
     socket.join(room);
 
     const delegator = createDelegator(socket);
-    delegator({
+    await delegator({
         type: 'CONNECT'
     });
 
@@ -29,12 +33,12 @@ io.on('connection', socket => {
         type: 'DISCONNECT'
     }));
 
-    socket.on('*', ({
+    socket.on('*', async ({
         data: [
             type,
             payload
         ]
-    } = {}) => delegator({
+    } = {}) => await delegator({
         type,
         payload
     }));

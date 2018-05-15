@@ -2,16 +2,18 @@ import * as roomManager from './room';
 import chat from './chat';
 import pawn from './pawn';
 
+const DEFAULT_ROOM = 'lobby';
+
 export default function (socket) {
-    return ({
+    return async ({
         type,
         payload
     } = {}) => {
         const {
             handshake: {
                 query: {
-                    room
-                }
+                    room = DEFAULT_ROOM
+                } = {}
             }
         } = socket;
         const [
@@ -24,16 +26,18 @@ export default function (socket) {
             case 'PAWN':
                 return pawn({ socket, type, payload });
             case 'CONNECT':
-                let r = roomManager
+                let r = await roomManager
                     .add({
-                        id: room
-                    })
-                    .join({
-                        user: {
-                            id: socket.id,
-                            pawns: {}
-                        }
+                        id: room,
+                        socket
                     });
+
+                r.join({
+                    user: {
+                        id: socket.id,
+                        pawns: {}
+                    }
+                });
 
                 pawn({ type, socket });
                 chat({ type, socket });
