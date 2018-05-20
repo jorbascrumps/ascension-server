@@ -51,7 +51,7 @@
     "babel-preset-stage-1": "6.24.1",
     "canvas-prebuilt": "1.6.5-prerelease.1",
     "jsdom": "11.10.0",
-    "phaser": "3.6.0",
+    "phaser": "3.8.0",
     "rollup": "0.58.2",
     "rollup-plugin-babel": "3.0.4",
     "rollup-plugin-commonjs": "9.1.3",
