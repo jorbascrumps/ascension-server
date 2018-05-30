@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "BABEL_ENV=canvas rollup -c && BABEL_ENV=server node index.js"
+    "start": "BABEL_ENV=server PORT=8080 node index.js"
   },
   "repository": {
     "type": "git",
