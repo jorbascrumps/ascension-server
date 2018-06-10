@@ -4,7 +4,7 @@ import {
 import {
     Game
 } from 'boardgame.io/core';
-import game from './game';
+import game from '../../game';
 
 const server = Server({
     games: [ Game(game) ]
