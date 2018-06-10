@@ -6,7 +6,10 @@ import {
 } from 'boardgame.io/core';
 import game from '../../game';
 
+const PORT = parseInt(process.env.PORT, 10) || 8080;
 const server = Server({
     games: [ Game(game) ]
 });
-server.run(process.env.PORT, () => console.log(`App launched @ ::${process.env.PORT}`));
+server.run(PORT, () =>
+    console.log(`App launched @ ::${PORT}`)
+);
