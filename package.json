@@ -17,20 +17,7 @@
   },
   "homepage": "https://github.com/iamchristopher/ascension-server",
   "babel": {
-    "env": {
-      "server": {
-        "presets": [
-          "es2015",
-          "stage-1"
-        ]
-      },
-      "canvas": {
-        "presets": [
-          "stage-1",
-          "es2015-rollup"
-        ]
-      }
-    }
+    "extends": "../.babelrc"
   },
   "jsHint": {
     "node": true
