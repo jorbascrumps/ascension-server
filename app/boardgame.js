@@ -4,7 +4,7 @@ import {
 import {
     Game
 } from 'boardgame.io/core';
-import game from '../../game';
+import game from '../../common/game';
 
 const PORT = parseInt(process.env.PORT, 10) || 8080;
 const server = Server({
