@@ -36,7 +36,7 @@
     "babel-preset-es2015-rollup": "3.0.0",
     "babel-preset-stage-0": "6.24.1",
     "babel-preset-stage-1": "6.24.1",
-    "boardgame.io": "0.23.1",
+    "boardgame.io": "0.23.3",
     "canvas-prebuilt": "1.6.5-prerelease.1",
     "jsdom": "11.10.0",
     "phaser": "3.8.0",
