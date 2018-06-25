@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "BABEL_ENV=server PORT=8080 node index.js"
+    "start": "BABEL_ENV=server PORT=8080 node --trace-warnings --inspect index.js"
   },
   "repository": {
     "type": "git",
