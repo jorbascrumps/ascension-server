@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/iamchristopher/ascension-server",
   "babel": {
-    "extends": "../.babelrc"
+    "extends": "./core/.babelrc"
   },
   "jsHint": {
     "node": true
@@ -43,6 +43,7 @@
     "rollup": "0.58.2",
     "rollup-plugin-babel": "3.0.4",
     "rollup-plugin-commonjs": "9.1.3",
-    "rollup-plugin-node-resolve": "3.3.0"
+    "rollup-plugin-node-resolve": "3.3.0",
+    "trekker": "^1.0.0"
   }
 }
