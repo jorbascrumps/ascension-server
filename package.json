@@ -20,7 +20,7 @@
     "node": true
   },
   "dependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-es2015": "6.24.1",
@@ -28,18 +28,18 @@
     "babel-preset-stage-0": "6.24.1",
     "babel-preset-stage-1": "6.24.1",
     "babel-register": "6.26.0",
-    "boardgame.io": "0.23.3",
+    "boardgame.io": "0.24.0",
     "canvas-prebuilt": "1.6.5-prerelease.1",
     "cors": "2.8.4",
     "express": "4.16.3",
-    "jsdom": "11.10.0",
-    "phaser": "3.8.0",
-    "rollup": "0.58.2",
-    "rollup-plugin-babel": "3.0.4",
+    "jsdom": "11.11.0",
+    "phaser": "3.11.0",
+    "rollup": "0.63.4",
+    "rollup-plugin-babel": "3.0.7",
     "rollup-plugin-commonjs": "9.1.3",
     "rollup-plugin-node-resolve": "3.3.0",
     "socket.io": "2.1.1",
     "socketio-wildcard": "2.0.0",
-    "trekker": "^1.0.0"
+    "trekker": "1.0.0"
   }
 }
