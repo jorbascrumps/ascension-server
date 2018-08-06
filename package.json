@@ -28,7 +28,7 @@
     "babel-preset-stage-0": "6.24.1",
     "babel-preset-stage-1": "6.24.1",
     "babel-register": "6.26.0",
-    "boardgame.io": "0.24.0",
+    "boardgame.io": "0.25.3",
     "canvas-prebuilt": "1.6.5-prerelease.1",
     "cors": "2.8.4",
     "express": "4.16.3",
