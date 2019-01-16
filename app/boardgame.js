@@ -5,13 +5,13 @@ import {
     Game
 } from 'boardgame.io/core';
 
-import gameConfig from '../core/common/game';
+import gameConfig from '../common/game';
 import {
     chunkMapData
-} from '../core/common/util';
+} from '../common/util';
 import {
     layers as mapLayers
-} from '../core/common/data/maps/level';
+} from '../common/data/maps/level';
 
 const PORT = parseInt(process.env.PORT, 10) || 8080;
 
