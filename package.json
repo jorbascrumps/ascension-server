@@ -38,5 +38,13 @@
     "socket.io": "2.1.1",
     "socketio-wildcard": "2.0.0",
     "trekker": "1.0.0"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-regenerator"
+    ],
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
