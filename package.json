@@ -41,12 +41,14 @@
   },
   "babel": {
     "env": {
-      "plugins": [
-        "@babel/plugin-transform-regenerator"
-      ],
-      "presets": [
-        "@babel/preset-env"
-      ]
+      "server": {
+        "plugins": [
+          "@babel/plugin-transform-regenerator"
+        ],
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
     }
   }
 }
