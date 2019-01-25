@@ -25,7 +25,7 @@
     "@babel/polyfill": "7.2.5",
     "@babel/preset-env": "7.2.3",
     "@babel/register": "7.0.0",
-    "boardgame.io": "0.25.3",
+    "boardgame.io": "0.31.1",
     "canvas-prebuilt": "1.6.5-prerelease.1",
     "cors": "2.8.4",
     "express": "4.16.3",
