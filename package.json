@@ -40,11 +40,13 @@
     "trekker": "1.0.0"
   },
   "babel": {
-    "plugins": [
-      "@babel/plugin-transform-regenerator"
-    ],
-    "presets": [
-      "@babel/preset-env"
-    ]
+    "env": {
+      "plugins": [
+        "@babel/plugin-transform-regenerator"
+      ],
+      "presets": [
+        "@babel/preset-env"
+      ]
+    }
   }
 }
