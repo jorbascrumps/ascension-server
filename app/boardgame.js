@@ -4,31 +4,61 @@ import {
 import {
     Game
 } from 'boardgame.io/core';
+import Dungeon from '@mikewesthad/dungeon';
 
 import gameConfig from '../core/common/game';
-import {
-    chunkMapData
-} from '../core/common/util';
-import {
-    layers as mapLayers
-} from '../core/common/data/maps/level';
+
+const dungeonData = new Dungeon({
+    randomSeed: 1234,
+    doorPadding: 2,
+    height: 30,
+    rooms: {
+        height: {
+            max: 11,
+            min: 5,
+            onlyOdd: true
+        },
+        width: {
+            max: 11,
+            min: 5,
+            onlyOdd: true
+        }
+    },
+    width: 30
+});
+
+const {
+    doorPadding,
+    roomConfig,
+    r,
+    roomGrid,
+    tiles,
+    rooms,
+    ...map
+} = dungeonData;
+
+const createBlankRoom = (width, height) => Array(height)
+    .fill(null)
+    .map(() => Array(width)
+        .fill(0)
+    )
+
+const convertTiles = tiles => tiles
+    .map(tile => ({
+        index: tile,
+        seen: false,
+    }));
 
 const PORT = parseInt(process.env.PORT, 10) || 8080;
 
-const {
-    data: mapData
-} = mapLayers.find(({ name }) => name === 'map');
-const {
-    data: blockedData
-} = mapLayers.find(({ name }) => name === 'blocked');
-const {
-    data: interactionsData
-} = mapLayers.find(({ name }) => name === 'interactions');
-
 const game = gameConfig({
-    map: chunkMapData(mapData, 20),
-    blocked: chunkMapData(blockedData, 20),
-    interactions: chunkMapData(interactionsData, 20)
+    map: {
+        ...map,
+        rooms: rooms.map(({ tiles, ...room }) => ({
+            ...room,
+            tiles: tiles.map(convertTiles),
+        }))
+    },
 });
 const server = Server({
     games: [ Game(game) ]

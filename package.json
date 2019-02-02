@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "BABEL_ENV=server PORT=8080 node --trace-warnings --inspect index.js"
+    "start": "BABEL_ENV=server NODE_PRESERVE_SYMLINKS=1 PORT=8080 node --trace-warnings --inspect index.js"
   },
   "repository": {
     "type": "git",
@@ -25,11 +25,13 @@
     "@babel/polyfill": "7.2.5",
     "@babel/preset-env": "7.2.3",
     "@babel/register": "7.0.0",
+    "@mikewesthad/dungeon": "^1.2.2",
     "boardgame.io": "0.31.1",
     "canvas-prebuilt": "1.6.5-prerelease.1",
     "cors": "2.8.4",
     "express": "4.16.3",
     "jsdom": "11.11.0",
+    "lootastic": "1.1.1",
     "phaser": "3.11.0",
     "rollup": "0.63.4",
     "rollup-plugin-babel": "3.0.7",
@@ -37,7 +39,7 @@
     "rollup-plugin-node-resolve": "3.3.0",
     "socket.io": "2.1.1",
     "socketio-wildcard": "2.0.0",
-    "trekker": "1.0.0"
+    "trekker": "^1.0.0-alpha01"
   },
   "babel": {
     "env": {
