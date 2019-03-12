@@ -2,7 +2,7 @@
   "name": "ascension-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index2.js",
+  "main": "index.js",
   "scripts": {
     "start": "BABEL_ENV=server NODE_PRESERVE_SYMLINKS=1 node --trace-warnings --inspect index.js"
   },
