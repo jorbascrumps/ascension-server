@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "BABEL_ENV=server NODE_PRESERVE_SYMLINKS=1 PORT=8080 node --trace-warnings --inspect index.js"
+    "start": "BABEL_ENV=server NODE_PRESERVE_SYMLINKS=1 node --trace-warnings --inspect index.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "canvas-prebuilt": "1.6.5-prerelease.1",
     "cors": "2.8.4",
     "express": "4.16.3",
+    "firebase": "^5.3.0",
     "jsdom": "11.11.0",
     "lootastic": "1.1.1",
     "phaser": "3.11.0",
