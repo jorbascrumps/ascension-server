@@ -1,5 +1,6 @@
 import {
-    Server
+    Server,
+    Firebase,
 } from 'boardgame.io/server';
 import {
     Game
@@ -56,12 +57,23 @@ const game = gameConfig({
         ...map,
         rooms: rooms.map(({ tiles, ...room }) => ({
             ...room,
-            tiles: tiles.map(convertTiles),
+            tiles: tiles
+                .map(convertTiles),
         }))
     },
 });
 const server = Server({
-    games: [ Game(game) ]
+    games: [ Game(game) ],
+    db: new Firebase({
+        config: {
+            apiKey: process.env.FB_API_KEY,
+            authDomain: process.env.FB_AUTH_DOMAIN,
+            databaseURL: process.env.FB_DATABASE_URL,
+            projectId: process.env.FB_PROJECT_ID,
+        },
+        dbname: process.env.FB_DATABASE_NAME,
+        engine: 'RTDB',
+    }),
 });
 server.run(PORT, () =>
     console.log(`App launched @ ::${PORT}`)
