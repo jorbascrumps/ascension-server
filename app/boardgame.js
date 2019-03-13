@@ -1,11 +1,12 @@
 import {
     Server,
-    Firebase,
+    // Firebase,
 } from 'boardgame.io/server';
 import {
     Game
 } from 'boardgame.io/core';
 import Dungeon from '@mikewesthad/dungeon';
+import CustomFirebase as Firebase from './CustomFirebase';
 
 import gameConfig from '../core/common/game';
 
@@ -45,9 +46,10 @@ const createBlankRoom = (width, height) => Array(height)
     )
 
 const convertTiles = tiles => tiles
-    .map(tile => ({
+    .map((tile, i) => ({
         index: tile,
         seen: false,
+        tags: [],
     }));
 
 const PORT = parseInt(process.env.PORT, 10) || 8080;
