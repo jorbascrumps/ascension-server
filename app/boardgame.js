@@ -6,7 +6,7 @@ import {
     Game
 } from 'boardgame.io/core';
 import Dungeon from '@mikewesthad/dungeon';
-import CustomFirebase as Firebase from './CustomFirebase';
+import Firebase from './CustomFirebase';
 
 import gameConfig from '../core/common/game';
 
